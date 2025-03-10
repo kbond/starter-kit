@@ -26,6 +26,9 @@
             "migrations/.gitignore"
         ]
     },
+    "knplabs/knp-time-bundle": {
+        "version": "v2.4.0"
+    },
     "phpunit/phpunit": {
         "version": "9.6",
         "recipe": {
@@ -310,5 +313,8 @@
     },
     "twig/extra-bundle": {
         "version": "v3.20.0"
+    },
+    "zenstruck/messenger-monitor-bundle": {
+        "version": "v0.5.1"
     }
 }

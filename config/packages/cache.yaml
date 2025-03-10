@@ -15,5 +15,8 @@ framework:
         #app: cache.adapter.apcu
 
         # Namespaced pools use the above "app" backend by default
-        #pools:
+        pools:
+            schedule_cache_pool:
+                adapter: cache.app
+
             #my.dedicated.cache: null
