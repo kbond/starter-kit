@@ -16,6 +16,17 @@ security:
         main:
             lazy: true
             provider: app_user_provider
+            form_login:
+                login_path: login
+                check_path: login
+                enable_csrf: true
+            logout:
+                path: logout
+                # where to redirect after logout
+                # target: app_any_route
+
+            # https://symfony.com/doc/current/security/remember_me.html
+            # remember_me: true
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
