@@ -1,0 +1,106 @@
+name: CI
+
+env:
+  PHP_VERSION: 8.3
+
+on:
+  push:
+
+jobs:
+  tests:
+    name: Test Suite
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          coverage: none
+
+      - name: Install Dependencies
+        uses: ramsey/composer-install@v3
+
+      - name: Run PHPUnit
+        run: bin/phpunit
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          coverage: none
+
+      - name: Install Dependencies
+        uses: ramsey/composer-install@v3
+
+      - name: About
+        run: bin/console about
+
+      - name: Lint Container
+        run: bin/console lint:container
+
+      - name: Lint Twig
+        run: bin/console lint:twig ./templates
+
+      - name: Lint Yaml
+        run: bin/console lint:yaml --parse-tags ./config
+
+      - name: Lint Doctrine Schema
+        run: bin/console doctrine:schema:validate --skip-sync
+
+      - name: Lint Commands
+        run: bin/console list --format=xml
+
+      - name: Lint Schedule
+        run: bin/console debug:schedule
+
+      - name: Audit Dependencies
+        run: composer audit
+
+  sca:
+    name: Static Code Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          coverage: none
+
+      - name: Install Dependencies
+        uses: ramsey/composer-install@v3
+
+      - name: Run PHPStan
+        run: vendor/bin/phpstan --error-format=github
+
+  cs:
+    name: Coding Standards
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          tools: cs2pr
+          coverage: none
+
+      - name: Install Dependencies
+        uses: ramsey/composer-install@v3
+
+      - name: Run PHP-CS-Fixer
+        run: vendor/bin/php-cs-fixer fix --dry-run --format=checkstyle | cs2pr
