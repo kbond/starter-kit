@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
-use Zenstruck\Messenger\Monitor\History\Model\ProcessedMessage as BaseProcessedMessage;
 use Doctrine\ORM\Mapping as ORM;
+use Zenstruck\Messenger\Monitor\History\Model\ProcessedMessage as BaseProcessedMessage;
 
 #[ORM\Entity(readOnly: true)]
 #[ORM\Table('processed_messages')]

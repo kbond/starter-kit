@@ -22,9 +22,9 @@
 1. _(optional)_ `docker compose up -d`
 2. `symfony server:start -d`
 
-## Testing
-
-Run `bin/phpunit` to run the test suite.
+- Run test suite: `bin/phpunit`
+- Run PHPStan _(static analysis)_: `vendor/bin/phpstan`
+- Run php-cs-fixer _(code style)_: `vendor/bin/php-cs-fixer fix -v`
 
 ## Schedule
 

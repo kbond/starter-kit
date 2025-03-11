@@ -105,6 +105,7 @@
         }
     },
     "require-dev": {
+        "php-cs-fixer/shim": "^3.71",
         "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "7.2.*",
