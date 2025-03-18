@@ -10,7 +10,9 @@ use Zenstruck\Foundry\Test\ResetDatabase;
 
 class AuthenticationTest extends KernelTestCase
 {
-    use ResetDatabase, Factories, HasBrowser;
+    use ResetDatabase;
+    use Factories;
+    use HasBrowser;
 
     public function testCanLoginAndLogout(): void
     {
