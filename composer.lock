@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "84818999cf01e4440368c3174cb8fc30",
+    "content-hash": "6e8c76c1377a0e49643971ccf606c781",
     "packages": [
         {
             "name": "composer/semver",
@@ -7794,54 +7794,6 @@
             "time": "2025-01-07T12:55:42+00:00"
         },
         {
-            "name": "symfonycasts/reset-password-bundle",
-            "version": "v1.23.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SymfonyCasts/reset-password-bundle.git",
-                "reference": "bde42fe5956e0cd523931da886ee41ab660c45b2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SymfonyCasts/reset-password-bundle/zipball/bde42fe5956e0cd523931da886ee41ab660c45b2",
-                "reference": "bde42fe5956e0cd523931da886ee41ab660c45b2",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "php": ">=8.1.10",
-                "symfony/config": "^5.4 | ^6.0 | ^7.0",
-                "symfony/dependency-injection": "^5.4 | ^6.0 | ^7.0",
-                "symfony/deprecation-contracts": "^2.2 | ^3.0",
-                "symfony/http-kernel": "^5.4 | ^6.0 | ^7.0"
-            },
-            "require-dev": {
-                "doctrine/annotations": "^1.0",
-                "doctrine/doctrine-bundle": "^2.8",
-                "doctrine/orm": "^2.13",
-                "symfony/framework-bundle": "^5.4 | ^6.0 | ^7.0",
-                "symfony/phpunit-bridge": "^5.4 | ^6.0 | ^7.0",
-                "symfony/process": "^6.4 | ^7.0 | ^7.1",
-                "symfonycasts/internal-test-helpers": "dev-main"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-4": {
-                    "SymfonyCasts\\Bundle\\ResetPassword\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Symfony bundle that adds password reset functionality.",
-            "support": {
-                "issues": "https://github.com/SymfonyCasts/reset-password-bundle/issues",
-                "source": "https://github.com/SymfonyCasts/reset-password-bundle/tree/v1.23.1"
-            },
-            "time": "2024-12-09T19:04:36+00:00"
-        },
-        {
             "name": "symfonycasts/tailwind-bundle",
             "version": "v0.8.0",
             "source": {
@@ -8766,16 +8718,16 @@
         },
         {
             "name": "php-cs-fixer/shim",
-            "version": "v3.71.0",
+            "version": "v3.72.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-CS-Fixer/shim.git",
-                "reference": "bbc2a38cc7b89727def47025dd8e03e1e3e46d82"
+                "reference": "f5131b7a7d0103919a1b478a2763bd76c98e472e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/shim/zipball/bbc2a38cc7b89727def47025dd8e03e1e3e46d82",
-                "reference": "bbc2a38cc7b89727def47025dd8e03e1e3e46d82",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/shim/zipball/f5131b7a7d0103919a1b478a2763bd76c98e472e",
+                "reference": "f5131b7a7d0103919a1b478a2763bd76c98e472e",
                 "shasum": ""
             },
             "require": {
@@ -8812,9 +8764,9 @@
             "description": "A tool to automatically fix PHP code style",
             "support": {
                 "issues": "https://github.com/PHP-CS-Fixer/shim/issues",
-                "source": "https://github.com/PHP-CS-Fixer/shim/tree/v3.71.0"
+                "source": "https://github.com/PHP-CS-Fixer/shim/tree/v3.72.0"
             },
-            "time": "2025-03-07T23:07:16+00:00"
+            "time": "2025-03-13T11:26:00+00:00"
         },
         {
             "name": "phpstan/phpstan",
@@ -11030,16 +10982,16 @@
         },
         {
             "name": "zenstruck/foundry",
-            "version": "v2.3.7",
+            "version": "v2.3.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zenstruck/foundry.git",
-                "reference": "2f523dfb812d4bde5d35f26993c29b6c61aaef01"
+                "reference": "8356b539f11af8786339a952fd71e6e15b40fb14"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zenstruck/foundry/zipball/2f523dfb812d4bde5d35f26993c29b6c61aaef01",
-                "reference": "2f523dfb812d4bde5d35f26993c29b6c61aaef01",
+                "url": "https://api.github.com/repos/zenstruck/foundry/zipball/8356b539f11af8786339a952fd71e6e15b40fb14",
+                "reference": "8356b539f11af8786339a952fd71e6e15b40fb14",
                 "shasum": ""
             },
             "require": {
@@ -11123,7 +11075,7 @@
             ],
             "support": {
                 "issues": "https://github.com/zenstruck/foundry/issues",
-                "source": "https://github.com/zenstruck/foundry/tree/v2.3.7"
+                "source": "https://github.com/zenstruck/foundry/tree/v2.3.8"
             },
             "funding": [
                 {
@@ -11131,12 +11083,12 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-03-07T17:56:53+00:00"
+            "time": "2025-03-14T13:49:16+00:00"
         }
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
@@ -11144,6 +11096,6 @@
         "ext-ctype": "*",
         "ext-iconv": "*"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }
