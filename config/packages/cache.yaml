@@ -20,3 +20,9 @@ framework:
                 adapter: cache.app
 
             #my.dedicated.cache: null
+
+
+when@test:
+    framework:
+        cache:
+            app: cache.adapter.array

@@ -31,6 +31,7 @@
 ### Security
 
 - Login Throttling: `config/packages/security.yaml` (`security.firewalls.main.login_throttling`)
+- Remember Me: `config/packages/security.yaml` (`security.firewalls.main.remember_me`)
 
 ### Schedule
 
