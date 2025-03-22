@@ -18,6 +18,10 @@ security:
         main:
             lazy: true
             provider: app_user_provider
+            login_throttling:
+                # 5 failed login attempts in 1 minute
+                max_attempts: 5
+                interval: '1 minute'
             form_login:
                 login_path: login
                 check_path: login

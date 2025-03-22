@@ -64,4 +64,18 @@ class AuthenticationTest extends KernelTestCase
             ->assertNotAuthenticated()
         ;
     }
+
+    public function testLoginWithInvalidCsrf(): void
+    {
+        UserFactory::createOne(['email' => 'mary@example.com', 'password' => '1234']);
+
+        $this->browser()
+            ->assertNotAuthenticated()
+            ->post('/login', ['body' => ['_username' => 'mary@example.com', '_password' => '1234']])
+            ->assertOn('/login')
+            ->assertSuccessful()
+            ->assertSee('Invalid CSRF token.')
+            ->assertNotAuthenticated()
+        ;
+    }
 }
