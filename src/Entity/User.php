@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -15,6 +16,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+
+    #[ORM\Column]
+    private ?string $name = null;
 
     #[ORM\Column(length: 180)]
     private ?string $email = null;
@@ -36,6 +40,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->id;
     }
 
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getFirstName(): string
+    {
+        return explode(' ', (string) $this->name)[0];
+    }
+
     public function getEmail(): ?string
     {
         return $this->email;
@@ -46,6 +67,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->email = $email;
 
         return $this;
+    }
+
+    public function getEmailAddress(): Address
+    {
+        return new Address($this->email, $this->name);
     }
 
     /**

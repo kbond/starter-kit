@@ -11,9 +11,6 @@ use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
  */
 final class UserFactory extends PersistentProxyObjectFactory
 {
-    /**
-     * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services
-     */
     public function __construct(
         private ?UserPasswordHasherInterface $passwordHasher = null,
     ) {
@@ -33,21 +30,16 @@ final class UserFactory extends PersistentProxyObjectFactory
         });
     }
 
-    /**
-     * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories
-     */
     protected function defaults(): array|callable
     {
         return [
-            'email' => self::faker()->text(180),
+            'name' => sprintf('%s %s', self::faker()->firstName(), self::faker()->lastName()),
+            'email' => self::faker()->email(),
             'password' => 'password',
             'roles' => [],
         ];
     }
 
-    /**
-     * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#initialization
-     */
     protected function initialize(): static
     {
         return $this
