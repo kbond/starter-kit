@@ -24,4 +24,13 @@ class UserTest extends TestCase
             $user->getAvatarUrl(),
         );
     }
+
+    public function testGetEmailAddress(): void
+    {
+        $user = new User();
+        $user->setName('John Smith');
+        $user->setEmail('john@example.com');
+
+        $this->assertSame('"John Smith" <john@example.com>', $user->getEmailAddress()->toString());
+    }
 }
