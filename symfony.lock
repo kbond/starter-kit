@@ -371,6 +371,9 @@
             "config/packages/zenstruck_foundry.yaml"
         ]
     },
+    "zenstruck/mailer-test": {
+        "version": "v1.4.2"
+    },
     "zenstruck/messenger-monitor-bundle": {
         "version": "v0.5.1"
     }
