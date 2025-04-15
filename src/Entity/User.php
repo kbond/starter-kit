@@ -125,4 +125,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
+    public function getAvatarUrl(): string
+    {
+        return \sprintf('https://www.gravatar.com/avatar/%s?s=300&d=%s',
+            \md5($this->email),
+            // Ref: https://ui-avatars.com/
+            // https://ui-avatars.com/api/name/size/background/color/length/font-size/rounded/uppercase/bold
+            \urlencode(\sprintf('https://ui-avatars.com/api/%s/300/random/8b5d5d/1/0.85/false/true/true',
+                // name needs to be "double encoded" - https://github.com/LasseRafn/ui-avatars/issues/62
+                \urlencode($this->name)
+            ))
+        );
+    }
 }
