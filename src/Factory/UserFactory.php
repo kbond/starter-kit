@@ -26,6 +26,11 @@ final class UserFactory extends PersistentProxyObjectFactory
         return $this->withRole('ROLE_ADMIN');
     }
 
+    public function verified(\DateTimeImmutable $at = new \DateTimeImmutable('now')): self
+    {
+        return $this->with(['verifiedAt' => $at]);
+    }
+
     public function withRole(string $value): self
     {
         return $this->beforeInstantiate(function (array $parameters) use ($value): array {

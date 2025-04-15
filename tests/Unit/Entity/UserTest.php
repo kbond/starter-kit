@@ -25,4 +25,17 @@ class UserTest extends UnitTestCase
             $user->getAvatarUrl(),
         );
     }
+
+    public function testVerificationRole(): void
+    {
+        $user = UserFactory::createOne();
+
+        $this->assertFalse($user->isVerified());
+        $this->assertSame(['ROLE_USER'], $user->getRoles());
+
+        $user->markVerified();
+
+        $this->assertSame(['ROLE_USER', 'ROLE_VERIFIED'], $user->getRoles());
+        $this->assertTrue($user->isVerified());
+    }
 }

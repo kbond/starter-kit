@@ -17,7 +17,7 @@ final class AppFixtures extends Fixture
         ]);
 
         // admin user
-        UserFactory::new()->admin()->create([
+        UserFactory::new()->admin()->verified()->create([
             'email' => 'mom@example.com',
             'password' => 'password',
         ]);
