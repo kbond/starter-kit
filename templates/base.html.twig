@@ -17,6 +17,12 @@
         {% else %}
             <a href="{{ path('login') }}">Login</a>
         {% endif %}
+        {% if app.user and not app.user.verified %}
+            <div class="alert alert-warning">
+                Your account isn't verified. Check your email for a verification link.
+                <a href="{{ path('send_verification') }}" data-controller="post-link" data-action="post-link#click">Resend Email</a>.
+            </div>
+        {% endif %}
         {% for type, messages in app.flashes %}
             {% for message in messages %}
                 <div class="alert alert-{{ type }}">
