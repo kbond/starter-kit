@@ -3,18 +3,11 @@
 namespace App\Tests\Functional;
 
 use App\Factory\UserFactory;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use App\Tests\FunctionalTestCase;
 use Symfony\Component\BrowserKit\CookieJar;
-use Zenstruck\Browser\Test\HasBrowser;
-use Zenstruck\Foundry\Test\Factories;
-use Zenstruck\Foundry\Test\ResetDatabase;
 
-class AuthenticationTest extends KernelTestCase
+class AuthenticationTest extends FunctionalTestCase
 {
-    use ResetDatabase;
-    use Factories;
-    use HasBrowser;
-
     public function testCanLoginAndLogout(): void
     {
         UserFactory::createOne(['email' => 'mary@example.com', 'password' => '1234']);

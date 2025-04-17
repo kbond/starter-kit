@@ -2,13 +2,10 @@
 
 namespace App\Tests\Functional;
 
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Zenstruck\Browser\Test\HasBrowser;
+use App\Tests\FunctionalTestCase;
 
-class MainTest extends KernelTestCase
+class MainTest extends FunctionalTestCase
 {
-    use HasBrowser;
-
     public function testHomepage(): void
     {
         $this->browser()
