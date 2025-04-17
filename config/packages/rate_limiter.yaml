@@ -1,5 +1,10 @@
 framework:
     rate_limiter:
+        verify_email:
+            policy: sliding_window
+            limit: 1
+            interval: 5 minutes
+            lock_factory: null
         forgot_password_email:
             policy: sliding_window
             limit: 1

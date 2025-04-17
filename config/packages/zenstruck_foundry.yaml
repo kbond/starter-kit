@@ -1,5 +1,8 @@
 when@dev: &dev
     # See full configuration: https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#full-default-bundle-configuration
     zenstruck_foundry:
+        instantiator:
+            use_constructor: false
+            always_force_properties: true
 
 when@test: *dev

@@ -41,6 +41,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $verifiedAt = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -101,6 +104,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
 
+        if ($this->isVerified()) {
+            $roles[] = 'ROLE_VERIFIED';
+        }
+
         return array_unique($roles);
     }
 
@@ -149,5 +156,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 \urlencode($this->name)
             ))
         );
+    }
+
+    public function verify(\DateTimeImmutable $timestamp = new \DateTimeImmutable('now')): static
+    {
+        $this->verifiedAt = $timestamp;
+
+        return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return null !== $this->verifiedAt;
+    }
+
+    public function getVerifiedAt(): ?\DateTimeImmutable
+    {
+        return $this->verifiedAt;
     }
 }
