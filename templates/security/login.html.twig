@@ -8,11 +8,23 @@
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
 
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="username">Email</label>
-        <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
+        <h1 class="h3 mb-3 font-weight-normal">
+            {% if app.user %}
+                Please re-authenticate
+            {% else %}
+                Please sign in
+            {% endif %}
+        </h1>
+
+        {% if app.user %}
+            <input type="hidden" value="{{ app.user.email }}" name="_username">
+        {% else %}
+            <label for="username">Email</label>
+            <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
+        {% endif %}
+
         <label for="password">Password</label>
-        <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
+        <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required {{ app.user ? 'autofocus' }}>
 
         <div class="checkbox mb-3">
             <input type="checkbox" checked name="_remember_me" id="_remember_me">
