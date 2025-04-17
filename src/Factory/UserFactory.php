@@ -21,10 +21,15 @@ final class UserFactory extends PersistentProxyObjectFactory
         return User::class;
     }
 
-    public function admin(): static
+    public function admin(): self
     {
-        return $this->beforeInstantiate(function (array $parameters): array {
-            $parameters['roles'][] = 'ROLE_ADMIN';
+        return $this->withRole('ROLE_ADMIN');
+    }
+
+    public function withRole(string $value): self
+    {
+        return $this->beforeInstantiate(function (array $parameters) use ($value): array {
+            $parameters['roles'][] = $value;
 
             return $parameters;
         });
