@@ -12,6 +12,11 @@
         {% endblock %}
     </head>
     <body>
+        {% if app.user %}
+            <p>Logged in as {{ app.user.email }} <a href="{{ logout_path() }}">Logout</a></p>
+        {% else %}
+            <a href="{{ path('login') }}">Login</a>
+        {% endif %}
         {% for type, messages in app.flashes %}
             {% for message in messages %}
                 <div class="alert alert-{{ type }}">
