@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Security;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -9,10 +9,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-final class SecurityController extends AbstractController
+#[Route(path: '/login', name: 'login')]
+final class LoginController extends AbstractController
 {
-    #[Route(path: '/login', name: 'login')]
-    public function login(Request $request, AuthenticationUtils $authenticationUtils): Response
+    public function __invoke(Request $request, AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
             return new RedirectResponse($request->query->get('target', $this->generateUrl('homepage')));

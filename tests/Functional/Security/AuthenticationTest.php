@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Functional;
+namespace App\Tests\Functional\Security;
 
 use App\Factory\UserFactory;
 use App\Tests\FunctionalTestCase;

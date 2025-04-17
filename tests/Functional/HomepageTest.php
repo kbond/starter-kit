@@ -4,7 +4,7 @@ namespace App\Tests\Functional;
 
 use App\Tests\FunctionalTestCase;
 
-class MainTest extends FunctionalTestCase
+class HomepageTest extends FunctionalTestCase
 {
     public function testHomepage(): void
     {
