@@ -43,6 +43,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $verifiedAt = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $lastLogin = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -159,6 +162,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function markLoggedIn(\DateTimeImmutable $at = new \DateTimeImmutable('now')): static
+    {
+        $this->lastLogin = $at;
+
+        return $this;
+    }
+
     public function isVerified(): bool
     {
         return null !== $this->verifiedAt;
@@ -174,5 +184,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->verifiedAt = $verifiedAt;
 
         return $this;
+    }
+
+    public function getLastLogin(): ?\DateTimeImmutable
+    {
+        return $this->lastLogin;
     }
 }
