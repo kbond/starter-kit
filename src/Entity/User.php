@@ -34,6 +34,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $lastLogin = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,5 +140,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 \urlencode($this->name)
             ))
         );
+    }
+
+    public function login(\DateTimeImmutable $timestamp = new \DateTimeImmutable('now')): static
+    {
+        $this->lastLogin = $timestamp;
+
+        return $this;
+    }
+
+    public function getLastLogin(): ?\DateTimeImmutable
+    {
+        return $this->lastLogin;
     }
 }
