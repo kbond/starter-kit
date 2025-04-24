@@ -244,13 +244,38 @@ class AuthenticationTest extends FunctionalTestCase
 
     public function testAutoRedirectedToAuthenticatedResourceAfterLogin(): void
     {
-        // complete this test when you have a page that requires authentication
-        $this->markTestIncomplete();
+        UserFactory::createOne(['email' => 'mary@example.com', 'password' => '1234']);
+
+        $this->browser()
+            ->visit('/profile')
+            ->assertOn('/login')
+            ->fillField('Email', 'mary@example.com')
+            ->fillField('Password', '1234')
+            ->click('Sign in')
+            ->assertOn('/profile')
+            ->assertSuccessful()
+        ;
     }
 
     public function testAutoRedirectedToFullyAuthenticatedResourceAfterFullyAuthenticated(): void
     {
-        // complete this test when/if you have a page that requires the user be "fully authenticated"
-        $this->markTestIncomplete();
+        UserFactory::createOne(['email' => 'mary@example.com', 'password' => '1234']);
+
+        $this->browser()
+            ->visit('/login')
+            ->fillField('Email', 'mary@example.com')
+            ->fillField('Password', '1234')
+            ->click('Sign in')
+            ->assertAuthenticated('mary@example.com')
+            ->use(function (CookieJar $cookieJar) {
+                $cookieJar->expire('MOCKSESSID');
+            })
+            ->visit('/change-email')
+            ->assertOn('/login')
+            ->fillField('Password', '1234')
+            ->click('Sign in')
+            ->assertOn('/change-email')
+            ->assertSuccessful()
+        ;
     }
 }

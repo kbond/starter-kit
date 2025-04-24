@@ -80,6 +80,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function changeEmail(?string $new): static
+    {
+        if (strtolower((string) $new) !== strtolower((string) $this->email)) {
+            $this->markUnverified();
+        }
+
+        $this->email = $new;
+
+        return $this;
+    }
+
     /**
      * A visual identifier that represents this user.
      *
@@ -158,6 +169,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function markVerified(\DateTimeImmutable $at = new \DateTimeImmutable('now')): static
     {
         $this->verifiedAt = $at;
+
+        return $this;
+    }
+
+    public function markUnverified(): static
+    {
+        $this->verifiedAt = null;
 
         return $this;
     }
