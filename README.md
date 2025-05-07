@@ -10,17 +10,21 @@
 1. Configure/confirm `.env`:
     - `APP_URL` - the _base_ URL of your application
     - `APP_FROM_EMAIL` - email address to send from
-    - `DATABASE_URL` - your database connection string
-2. Create Database: `symfony console doctrine:database:create`
-3. Create migrations: `symfony console doctrine:migrations:diff`
-4. Run migrations: `symfony console doctrine:migrations:migrate`
-5. Download Tailwind CSS: `symfony console tailwind:build`
-6. Load `dev` fixtures: `symfony console doctrine:fixtures:load`
+2. Database setup:
+
+```   
+symfony console doctrine:database:create
+symfony console doctrine:migrations:diff
+symfony console doctrine:migrations:migrate
+symfony console doctrine:fixtures:load
+```
 
 ## Local Development
 
-1. _(optional)_ `docker compose up -d`
-2. `symfony server:start -d`
+1. `symfony server:start -d`
+2. Head to https://127.0.0.1:8000
+
+## Other Goodies
 
 - Run test suite: `bin/phpunit`
 - Run PHPStan _(static analysis)_: `vendor/bin/phpstan`
