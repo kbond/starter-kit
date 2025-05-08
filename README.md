@@ -11,13 +11,12 @@
     - `APP_URL` - the _base_ URL of your application
     - `APP_FROM_EMAIL` - email address to send from
 2. Database setup:
-
-```   
-symfony console doctrine:database:create
-symfony console doctrine:migrations:diff
-symfony console doctrine:migrations:migrate
-symfony console doctrine:fixtures:load
-```
+    ```
+    symfony console doctrine:database:create
+    symfony console make:migration
+    symfony console doctrine:migrations:migrate
+    symfony console doctrine:fixtures:load
+    ```
 
 ## Local Development
 
@@ -35,7 +34,6 @@ symfony console doctrine:fixtures:load
 ### Security
 
 - Login Throttling: `config/packages/security.yaml` (`security.firewalls.main.login_throttling`)
-- Remember Me: `config/packages/security.yaml` (`security.firewalls.main.remember_me`)
 
 ### Schedule
 
