@@ -1,0 +1,11 @@
+{% extends 'email/base.html.twig' %}
+
+{% block body %}
+    <h1>Hi {{ user.firstName }}!</h1>
+
+    <p>To verify your email, please visit the following link</p>
+
+    <a href="{{ link }}">{{ link }}</a>
+
+    <p>Cheers!</p>
+{% endblock %}

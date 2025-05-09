@@ -47,7 +47,9 @@ final class RegistrationController extends AbstractController
             $em->flush();
             $this->addFlash('success', 'Registration successful! You are now logged in.');
 
-            return $security->login($user, 'form_login');
+            $security->login($user, 'form_login');
+
+            return $this->forward(VerificationController::class.'::sendVerification');
         }
 
         return $this->render('user/register.html.twig', [
