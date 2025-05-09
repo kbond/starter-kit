@@ -10,7 +10,9 @@ class AuthenticationTest extends FunctionalTestCase
 {
     public function testCanLoginAndLogout(): void
     {
-        UserFactory::createOne(['email' => 'mary@example.com', 'password' => '1234']);
+        $user = UserFactory::createOne(['email' => 'mary@example.com', 'password' => '1234']);
+
+        $this->assertNull($user->getLastLogin());
 
         $this->browser()
             ->assertNotAuthenticated()
@@ -25,6 +27,8 @@ class AuthenticationTest extends FunctionalTestCase
             ->assertOn('/')
             ->assertNotAuthenticated()
         ;
+
+        $this->assertNotNull($user->getLastLogin());
     }
 
     public function testRedirectToTargetAfterLogin(): void
