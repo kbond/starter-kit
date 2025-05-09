@@ -15,7 +15,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 final class ChangeEmailController extends AbstractController
 {
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
-    #[Route('/change-email', name: 'change_email')]
+    #[Route('/change-email', name: 'app_change_email')]
     public function changeEmail(
         Request $request,
         EntityManagerInterface $em,

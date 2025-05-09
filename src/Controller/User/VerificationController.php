@@ -28,7 +28,7 @@ final class VerificationController extends AbstractController
     private const EXPIRES_AFTER = 3600 * 24; // 24 hours
     private const SESSION_USER_ID = 'verification_id';
 
-    #[Route('/send-verification', name: 'send_verification', methods: 'POST')]
+    #[Route('/send-verification', name: 'app_send_verification', methods: 'POST')]
     public function sendVerification(
         UriSigner $uriSigner,
         MailerInterface $mailer,
@@ -40,22 +40,22 @@ final class VerificationController extends AbstractController
         RateLimiterFactory $rateLimiter, // todo switch to RateLimiterInterface in 7.3
     ): Response {
         if ($user->isVerified()) {
-            return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('app_homepage');
         }
 
         if (!$rateLimiter->create($user->getEmail())->consume()->isAccepted()) {
             $this->addFlash('error', 'You recently requested an account verification. Please check your email for the link to verify your account.');
 
-            return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('app_homepage');
         }
 
         $this->sendVerificationLink($uriSigner, $mailer, $user);
         $this->addFlash('success', sprintf('A verification link has been sent to %s.', $user->getEmail()));
 
-        return $this->redirectToRoute('homepage');
+        return $this->redirectToRoute('app_homepage');
     }
 
-    #[Route('/verify-email/{id<\d+>}', name: 'verify_email')]
+    #[Route('/verify-email/{id<\d+>}', name: 'app_verify_email')]
     public function verify(
         Request $request,
         UserRepository $users,
@@ -75,7 +75,7 @@ final class VerificationController extends AbstractController
         if ($user->isVerified()) {
             $this->addFlash('error', 'This verification link has already been used.');
 
-            return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('app_homepage');
         }
 
         $user->markVerified();
@@ -96,12 +96,12 @@ final class VerificationController extends AbstractController
         if (!$uriSigner->checkRequest($request)) {
             $this->addFlash('error', 'The verification link is invalid or has expired, try resending.');
 
-            return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('app_homepage');
         }
 
         $request->getSession()->set(self::SESSION_USER_ID, $id);
 
-        return $this->redirectToRoute('verify_email');
+        return $this->redirectToRoute('app_verify_email');
     }
 
     private function sendVerificationLink(
@@ -112,7 +112,7 @@ final class VerificationController extends AbstractController
         $expires = now()->modify(sprintf('+%d seconds', self::EXPIRES_AFTER));
         $link = $uriSigner->sign(
             $this->generateUrl(
-                'verify_email',
+                'app_verify_email',
                 ['id' => $user->getId()],
                 UrlGeneratorInterface::ABSOLUTE_URL
             ),

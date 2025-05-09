@@ -13,7 +13,7 @@ use Symfony\Component\Security\Http\Attribute\CurrentUser;
 
 final class ProfileController extends AbstractController
 {
-    #[Route(path: '/profile', name: 'user_profile')]
+    #[Route(path: '/profile', name: 'app_user_profile')]
     public function profile(
         Request $request,
         EntityManagerInterface $em,
@@ -28,7 +28,7 @@ final class ProfileController extends AbstractController
             $em->flush();
             $this->addFlash('success', 'You\'ve successfully updated your profile.');
 
-            return $this->redirectToRoute('user_profile');
+            return $this->redirectToRoute('app_user_profile');
         }
 
         if ($form->isSubmitted()) {

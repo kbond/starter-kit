@@ -31,7 +31,7 @@ final class ResetPasswordController extends AbstractController
     private const SESSION_USER_ID_KEY = 'password_reset_id';
     private const ALREADY_USED_HASH_PARAM = 'valid';
 
-    #[Route('/forgot-password', name: 'password_reset_request')]
+    #[Route('/forgot-password', name: 'app_password_reset_request')]
     public function forgot(
         Request $request,
         UriSigner $uriSigner,
@@ -51,14 +51,14 @@ final class ResetPasswordController extends AbstractController
             if (!$rateLimiter->create($email)->consume()->isAccepted()) {
                 $this->addFlash('error', 'You recently requested a password reset. Please check your email for the link to reset your password.');
 
-                return $this->redirectToRoute('password_reset_request');
+                return $this->redirectToRoute('app_password_reset_request');
             }
 
             $this->sendResetLink($users, $uriSigner, $mailer, $email);
 
             $this->addFlash('success', \sprintf('A password reset link has been sent to %s.', $email));
 
-            return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('app_homepage');
         }
 
         return $this->render('security/forgot_password.html.twig', [
@@ -66,7 +66,7 @@ final class ResetPasswordController extends AbstractController
         ]);
     }
 
-    #[Route('/reset-password/{id<\d+>}', name: 'password_reset')]
+    #[Route('/reset-password/{id<\d+>}', name: 'app_password_reset')]
     public function reset(
         Request $request,
         UserRepository $users,
@@ -91,7 +91,7 @@ final class ResetPasswordController extends AbstractController
         if (!hash_equals($this->computeAlreadyUsedHash($user), $alreadyUsedHash)) {
             $this->addFlash('error', 'This password reset link has already been used.');
 
-            return $this->redirectToRoute('password_reset_request');
+            return $this->redirectToRoute('app_password_reset_request');
         }
 
         $form = $this->createForm(ChangePasswordForm::class);
@@ -125,12 +125,12 @@ final class ResetPasswordController extends AbstractController
         if (!$uriSigner->checkRequest($request)) {
             $this->addFlash('error', 'The link is invalid or has expired, please try again.');
 
-            return $this->redirectToRoute('password_reset_request');
+            return $this->redirectToRoute('app_password_reset_request');
         }
 
         $request->getSession()->set(self::SESSION_USER_ID_KEY, $id);
 
-        return $this->redirectToRoute('password_reset', [self::ALREADY_USED_HASH_PARAM => $request->query->get(self::ALREADY_USED_HASH_PARAM)]);
+        return $this->redirectToRoute('app_password_reset', [self::ALREADY_USED_HASH_PARAM => $request->query->get(self::ALREADY_USED_HASH_PARAM)]);
     }
 
     private function sendResetLink(
@@ -146,7 +146,7 @@ final class ResetPasswordController extends AbstractController
         $expires = now()->modify(sprintf('+%d seconds', self::EXPIRES_AFTER));
         $link = $uriSigner->sign(
             $this->generateUrl(
-                'password_reset',
+                'app_password_reset',
                 [
                     'id' => $user->getId(),
                     self::ALREADY_USED_HASH_PARAM => $this->computeAlreadyUsedHash($user),

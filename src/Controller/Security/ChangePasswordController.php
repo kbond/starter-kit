@@ -14,7 +14,7 @@ use Symfony\Component\Security\Http\Attribute\CurrentUser;
 
 class ChangePasswordController extends AbstractController
 {
-    #[Route(path: '/change-password', name: 'change_password')]
+    #[Route(path: '/change-password', name: 'app_change_password')]
     public function changePassword(
         Request $request,
         UserPasswordHasherInterface $passwordHasher,
@@ -37,7 +37,7 @@ class ChangePasswordController extends AbstractController
 
             $this->addFlash('success', 'You\'ve successfully changed your password.');
 
-            return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('app_homepage');
         }
 
         return $this->render('security/change_password.html.twig', [

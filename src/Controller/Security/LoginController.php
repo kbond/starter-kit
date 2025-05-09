@@ -11,11 +11,11 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 final class LoginController extends AbstractController
 {
-    #[Route(path: '/login', name: 'login')]
+    #[Route(path: '/login', name: 'app_login')]
     public function login(Request $request, AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
-            return new RedirectResponse($request->query->get('target', $this->generateUrl('homepage')));
+            return new RedirectResponse($request->query->get('target', $this->generateUrl('app_homepage')));
         }
 
         // get the login error if there is one

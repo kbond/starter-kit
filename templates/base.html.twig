@@ -15,12 +15,12 @@
         {% if app.user %}
             <p>Logged in as {{ app.user.email }} <a href="{{ logout_path() }}">Logout</a></p>
         {% else %}
-            <a href="{{ path('login') }}">Login</a>
+            <a href="{{ path('app_login') }}">Login</a>
         {% endif %}
         {% if app.user and not app.user.verified %}
             <div class="alert alert-warning">
                 Your account isn't verified. Check your email for a verification link.
-                <form action="{{ path('send_verification') }}" method="post">
+                <form action="{{ path('app_send_verification') }}" method="post">
                     <button type="submit">Resend Email</button>
                 </form>
             </div>

@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class RegistrationController extends AbstractController
 {
-    #[Route('/register', name: 'register')]
+    #[Route('/register', name: 'app_register')]
     public function register(
         Request $request,
         UserPasswordHasherInterface $passwordHasher,
@@ -35,7 +35,7 @@ final class RegistrationController extends AbstractController
             if ($ip && !$rateLimiter->create($ip)->consume()->isAccepted()) {
                 $this->addFlash('error', 'You recently registered. Please try again later.');
 
-                return $this->redirectToRoute('homepage');
+                return $this->redirectToRoute('app_homepage');
             }
 
             /** @var string $plainPassword */
