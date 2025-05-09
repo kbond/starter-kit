@@ -14,12 +14,13 @@
         "doctrine/orm": "^3.3.2",
         "dragonmantank/cron-expression": "^3.4",
         "knplabs/knp-time-bundle": "^2.4",
-        "league/html-to-markdown": "^5.1",
+        "league/html-to-markdown": "^5.1.1",
         "lorisleiva/cron-translator": "^0.4.5",
-        "phpdocumentor/reflection-docblock": "^5.6.1",
+        "phpdocumentor/reflection-docblock": "^5.6.2",
         "phpstan/phpdoc-parser": "^2.1",
         "symfony/asset": "7.2.*",
         "symfony/asset-mapper": "7.2.*",
+        "symfony/clock": "7.2.*",
         "symfony/console": "7.2.*",
         "symfony/doctrine-messenger": "7.2.*",
         "symfony/dotenv": "7.2.*",
@@ -41,11 +42,11 @@
         "symfony/scheduler": "7.2.*",
         "symfony/security-bundle": "7.2.*",
         "symfony/serializer": "7.2.*",
-        "symfony/stimulus-bundle": "^2.23",
+        "symfony/stimulus-bundle": "^2.24",
         "symfony/string": "7.2.*",
         "symfony/translation": "7.2.*",
         "symfony/twig-bundle": "7.2.*",
-        "symfony/ux-turbo": "^2.23",
+        "symfony/ux-turbo": "^2.24",
         "symfony/validator": "7.2.*",
         "symfony/web-link": "7.2.*",
         "symfony/yaml": "7.2.*",
@@ -56,8 +57,8 @@
         "zenstruck/messenger-monitor-bundle": "^0.5.1"
     },
     "require-dev": {
-        "php-cs-fixer/shim": "^3.74.0",
-        "phpstan/phpstan": "^2.1.11",
+        "php-cs-fixer/shim": "^3.75.0",
+        "phpstan/phpstan": "^2.1.12",
         "phpunit/phpunit": "^9.6.22",
         "symfony/browser-kit": "7.2.*",
         "symfony/css-selector": "7.2.*",
@@ -67,8 +68,8 @@
         "symfony/stopwatch": "7.2.*",
         "symfony/web-profiler-bundle": "7.2.*",
         "zenstruck/browser": "^1.9.1",
-        "zenstruck/foundry": "^2.3.9",
-        "zenstruck/mailer-test": "^1.4"
+        "zenstruck/foundry": "^2.4.1",
+        "zenstruck/mailer-test": "^1.4.2"
     },
     "config": {
         "allow-plugins": {
