@@ -1,5 +1,11 @@
 framework:
     rate_limiter:
+        user_registration:
+            policy: sliding_window
+            limit: 1
+            interval: 30 minutes
+            lock_factory: null # todo remove in Symfony 7.3
+
         forgot_password_email:
             policy: sliding_window
             limit: 1
