@@ -132,13 +132,13 @@ class ResetPasswordTest extends FunctionalTestCase
             ->assertStatus(404)
             ->visit("/reset-password/{$user->getId()}")
             ->assertOn('/forgot-password')
-            ->assertSee('The link is invalid or has expired, please try again')
+            ->assertSee('This reset password link is invalid, please try again')
             ->visit('/reset-password/1234')
             ->assertOn('/forgot-password')
-            ->assertSee('The link is invalid or has expired, please try again')
+            ->assertSee('This reset password link is invalid, please try again')
             ->visit("/reset-password/{$user->getId()}?_hash=invalid-hash")
             ->assertOn('/forgot-password')
-            ->assertSee('The link is invalid or has expired, please try again')
+            ->assertSee('This reset password link is invalid, please try again')
             ->use(function (Browser $browser) {
                 // Create a valid reset link
                 $link = $this->createValidResetLink('john@example.com');
@@ -164,7 +164,7 @@ class ResetPasswordTest extends FunctionalTestCase
         $this->browser()
             ->visit($link)
             ->assertOn('/forgot-password')
-            ->assertSee('The link is invalid or has expired, please try again')
+            ->assertSee('This reset password link has expired, please try again')
         ;
     }
 

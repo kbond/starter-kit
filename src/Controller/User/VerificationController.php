@@ -9,6 +9,8 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\DependencyInjection\Attribute\Target;
+use Symfony\Component\HttpFoundation\Exception\ExpiredSignedUriException;
+use Symfony\Component\HttpFoundation\Exception\SignedUriException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\UriSigner;
@@ -93,8 +95,14 @@ final class VerificationController extends AbstractController
      */
     private function addUserIdToSessionAndRedirect(UriSigner $uriSigner, Request $request, int $id): Response
     {
-        if (!$uriSigner->checkRequest($request)) {
-            $this->addFlash('error', 'The verification link is invalid or has expired, try resending.');
+        try {
+            $uriSigner->verify($request);
+        } catch (ExpiredSignedUriException) {
+            $this->addFlash('error', 'This verification link has expired, try resending.');
+
+            return $this->redirectToRoute('app_homepage');
+        } catch (SignedUriException) {
+            $this->addFlash('error', 'This verification link is invalid, try resending.');
 
             return $this->redirectToRoute('app_homepage');
         }

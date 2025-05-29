@@ -175,7 +175,7 @@ class RegistrationTest extends FunctionalTestCase
         $this->browser()
             ->visit($link)
             ->assertOn('/')
-            ->assertSee('The verification link is invalid or has expired, try resending.')
+            ->assertSee('This verification link has expired, try resending.')
         ;
     }
 
@@ -188,13 +188,13 @@ class RegistrationTest extends FunctionalTestCase
             ->assertStatus(404)
             ->visit("/verify-email/{$user->getId()}")
             ->assertOn('/')
-            ->assertSee('The verification link is invalid or has expired, try resending.')
+            ->assertSee('This verification link is invalid, try resending.')
             ->visit('/verify-email/1234')
             ->assertOn('/')
-            ->assertSee('The verification link is invalid or has expired, try resending.')
+            ->assertSee('This verification link is invalid, try resending.')
             ->visit("/verify-email/{$user->getId()}?_hash=invalid")
             ->assertOn('/')
-            ->assertSee('The verification link is invalid or has expired, try resending.')
+            ->assertSee('This verification link is invalid, try resending.')
             ->use(function (Browser $browser) use ($user) {
                 $link = $this->createValidVerificationLink($user);
 

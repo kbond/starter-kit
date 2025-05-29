@@ -11,6 +11,8 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\DependencyInjection\Attribute\Target;
+use Symfony\Component\HttpFoundation\Exception\ExpiredSignedUriException;
+use Symfony\Component\HttpFoundation\Exception\SignedUriException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\UriSigner;
@@ -122,8 +124,14 @@ final class ResetPasswordController extends AbstractController
      */
     private function addUserIdToSessionAndRedirect(UriSigner $uriSigner, Request $request, int $id): Response
     {
-        if (!$uriSigner->checkRequest($request)) {
-            $this->addFlash('error', 'The link is invalid or has expired, please try again.');
+        try {
+            $uriSigner->verify($request);
+        } catch (ExpiredSignedUriException) {
+            $this->addFlash('error', 'This reset password link has expired, please try again.');
+
+            return $this->redirectToRoute('app_password_reset_request');
+        } catch (SignedUriException) {
+            $this->addFlash('error', 'This reset password link is invalid, please try again.');
 
             return $this->redirectToRoute('app_password_reset_request');
         }
