@@ -2,14 +2,18 @@
 
 namespace App\Tests\Functional\User;
 
+use App\Entity\User;
 use App\Factory\UserFactory;
 use App\Tests\FunctionalTestCase;
+use Symfony\Component\Clock\Test\ClockSensitiveTrait;
+use Zenstruck\Browser;
 use Zenstruck\Mailer\Test\InteractsWithMailer;
 use Zenstruck\Mailer\Test\TestEmail;
 
 class RegistrationTest extends FunctionalTestCase
 {
     use InteractsWithMailer;
+    use ClockSensitiveTrait;
 
     public function testRegistration(): void
     {
@@ -159,5 +163,78 @@ class RegistrationTest extends FunctionalTestCase
         ;
 
         $this->assertTrue($user->isVerified());
+    }
+
+    public function testExpiredVerificationLink(): void
+    {
+        $user = UserFactory::createOne();
+        $link = $this->createValidVerificationLink($user);
+
+        self::mockTime('+2 days');
+
+        $this->browser()
+            ->visit($link)
+            ->assertOn('/')
+            ->assertSee('The verification link is invalid or has expired, try resending.')
+        ;
+    }
+
+    public function testInvalidVerificationLink(): void
+    {
+        $user = UserFactory::createOne();
+
+        $this->browser()
+            ->visit('/verify-email')
+            ->assertStatus(404)
+            ->visit("/verify-email/{$user->getId()}")
+            ->assertOn('/')
+            ->assertSee('The verification link is invalid or has expired, try resending.')
+            ->visit('/verify-email/1234')
+            ->assertOn('/')
+            ->assertSee('The verification link is invalid or has expired, try resending.')
+            ->visit("/verify-email/{$user->getId()}?_hash=invalid")
+            ->assertOn('/')
+            ->assertSee('The verification link is invalid or has expired, try resending.')
+            ->use(function (Browser $browser) use ($user) {
+                $link = $this->createValidVerificationLink($user);
+
+                // delete users
+                UserFactory::truncate();
+
+                // visit the link
+                $browser->visit($link);
+            })
+            ->assertStatus(404)
+        ;
+    }
+
+    public function testAlreadyUsedVerificationLink(): void
+    {
+        $user = UserFactory::createOne();
+        $link = $this->createValidVerificationLink($user);
+
+        $user->markVerified();
+        $user->_save();
+
+        $this->browser()
+            ->visit($link)
+            ->assertOn('/')
+            ->assertSee('This verification link has already been used.')
+        ;
+    }
+
+    private function createValidVerificationLink(User $user): string
+    {
+        $this->browser()
+            ->actingAs($user)
+            ->post('/send-verification')
+        ;
+
+        return $this->mailer()
+            ->sentEmails()
+            ->whereTo($user->getEmail())
+            ->first()
+            ->metadata()['link'] ?? self::fail('Link metadata not set')
+        ;
     }
 }

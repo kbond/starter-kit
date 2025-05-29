@@ -195,6 +195,11 @@ class ResetPasswordTest extends FunctionalTestCase
             ->click('Submit')
         ;
 
-        return $this->mailer()->sentEmails()->whereTo($email)->first()->metadata()['link'] ?? self::fail('Link metadata not set');
+        return $this->mailer()
+            ->sentEmails()
+            ->whereTo($email)
+            ->first()
+            ->metadata()['link'] ?? self::fail('Link metadata not set')
+        ;
     }
 }
