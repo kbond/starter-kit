@@ -19,7 +19,7 @@ use Symfony\Component\Mailer\Header\TagHeader;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\RateLimiter\RateLimiterFactory;
+use Symfony\Component\RateLimiter\RateLimiterFactoryInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -39,7 +39,7 @@ final class ResetPasswordController extends AbstractController
         UserRepository $users,
 
         #[Target('forgotPasswordEmailLimiter')]
-        RateLimiterFactory $rateLimiter, // todo switch to RateLimiterInterface in 7.3
+        RateLimiterFactoryInterface $rateLimiter,
     ): Response {
         $form = $this->createForm(ForgotPasswordForm::class);
         $form->handleRequest($request);

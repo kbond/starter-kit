@@ -16,7 +16,7 @@ use Symfony\Component\Mailer\Header\MetadataHeader;
 use Symfony\Component\Mailer\Header\TagHeader;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
-use Symfony\Component\RateLimiter\RateLimiterFactory;
+use Symfony\Component\RateLimiter\RateLimiterFactoryInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
@@ -37,7 +37,7 @@ final class VerificationController extends AbstractController
         User $user,
 
         #[Target('verifyEmailLimiter')]
-        RateLimiterFactory $rateLimiter, // todo switch to RateLimiterInterface in 7.3
+        RateLimiterFactoryInterface $rateLimiter,
     ): Response {
         if ($user->isVerified()) {
             return $this->redirectToRoute('app_homepage');
