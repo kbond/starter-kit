@@ -156,9 +156,10 @@ class ResetPasswordTest extends FunctionalTestCase
     public function testExpiredResetLink(): void
     {
         UserFactory::createOne(['email' => 'john@example.com']);
-        self::mockTime('-2 hours');
 
         $link = $this->createValidResetLink('john@example.com');
+
+        self::mockTime('+2 hours');
 
         $this->browser()
             ->visit($link)
