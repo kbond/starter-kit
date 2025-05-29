@@ -153,14 +153,15 @@
         ]
     },
     "symfony/framework-bundle": {
-        "version": "7.2",
+        "version": "7.3",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
-            "version": "7.2",
-            "ref": "87bcf6f7c55201f345d8895deda46d2adbdbaa89"
+            "version": "7.3",
+            "ref": "a64726446f6dcf3721f192c1df35418d69b3ba92"
         },
         "files": [
+            ".editorconfig",
             "config/packages/cache.yaml",
             "config/packages/framework.yaml",
             "config/preload.php",
@@ -356,12 +357,12 @@
         ]
     },
     "symfony/web-profiler-bundle": {
-        "version": "7.2",
+        "version": "7.3",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
-            "version": "6.1",
-            "ref": "8b51135b84f4266e3b4c8a6dc23c9d1e32e543b7"
+            "version": "7.3",
+            "ref": "5b2b543e13942495c0003f67780cb4448af9e606"
         },
         "files": [
             "config/packages/web_profiler.yaml",
@@ -393,12 +394,12 @@
         }
     },
     "zenstruck/foundry": {
-        "version": "2.3",
+        "version": "2.5",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
-            "version": "2.0",
-            "ref": "56bc588a1b6d5d218319f70c64c2f0fbebe30ec7"
+            "version": "2.5",
+            "ref": "8390abe263fa9b68f55c2799c44af5fec2912c5d"
         },
         "files": [
             "config/packages/zenstruck_foundry.yaml"
