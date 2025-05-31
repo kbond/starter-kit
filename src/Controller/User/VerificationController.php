@@ -9,6 +9,8 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\DependencyInjection\Attribute\Target;
+use Symfony\Component\HttpFoundation\Exception\ExpiredSignedUriException;
+use Symfony\Component\HttpFoundation\Exception\SignedUriException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\UriSigner;
@@ -16,7 +18,7 @@ use Symfony\Component\Mailer\Header\MetadataHeader;
 use Symfony\Component\Mailer\Header\TagHeader;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
-use Symfony\Component\RateLimiter\RateLimiterFactory;
+use Symfony\Component\RateLimiter\RateLimiterFactoryInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
@@ -37,7 +39,7 @@ final class VerificationController extends AbstractController
         User $user,
 
         #[Target('verifyEmailLimiter')]
-        RateLimiterFactory $rateLimiter, // todo switch to RateLimiterInterface in 7.3
+        RateLimiterFactoryInterface $rateLimiter,
     ): Response {
         if ($user->isVerified()) {
             return $this->redirectToRoute('app_homepage');
@@ -93,8 +95,14 @@ final class VerificationController extends AbstractController
      */
     private function addUserIdToSessionAndRedirect(UriSigner $uriSigner, Request $request, int $id): Response
     {
-        if (!$uriSigner->checkRequest($request)) {
-            $this->addFlash('error', 'The verification link is invalid or has expired, try resending.');
+        try {
+            $uriSigner->verify($request);
+        } catch (ExpiredSignedUriException) {
+            $this->addFlash('error', 'This verification link has expired, try resending.');
+
+            return $this->redirectToRoute('app_homepage');
+        } catch (SignedUriException) {
+            $this->addFlash('error', 'This verification link is invalid, try resending.');
 
             return $this->redirectToRoute('app_homepage');
         }

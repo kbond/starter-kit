@@ -132,13 +132,13 @@ class ResetPasswordTest extends FunctionalTestCase
             ->assertStatus(404)
             ->visit("/reset-password/{$user->getId()}")
             ->assertOn('/forgot-password')
-            ->assertSee('The link is invalid or has expired, please try again')
+            ->assertSee('This reset password link is invalid, please try again')
             ->visit('/reset-password/1234')
             ->assertOn('/forgot-password')
-            ->assertSee('The link is invalid or has expired, please try again')
+            ->assertSee('This reset password link is invalid, please try again')
             ->visit("/reset-password/{$user->getId()}?_hash=invalid-hash")
             ->assertOn('/forgot-password')
-            ->assertSee('The link is invalid or has expired, please try again')
+            ->assertSee('This reset password link is invalid, please try again')
             ->use(function (Browser $browser) {
                 // Create a valid reset link
                 $link = $this->createValidResetLink('john@example.com');
@@ -156,14 +156,15 @@ class ResetPasswordTest extends FunctionalTestCase
     public function testExpiredResetLink(): void
     {
         UserFactory::createOne(['email' => 'john@example.com']);
-        self::mockTime('-2 hours');
 
         $link = $this->createValidResetLink('john@example.com');
+
+        self::mockTime('+2 hours');
 
         $this->browser()
             ->visit($link)
             ->assertOn('/forgot-password')
-            ->assertSee('The link is invalid or has expired, please try again')
+            ->assertSee('This reset password link has expired, please try again')
         ;
     }
 
@@ -194,6 +195,11 @@ class ResetPasswordTest extends FunctionalTestCase
             ->click('Submit')
         ;
 
-        return $this->mailer()->sentEmails()->whereTo($email)->first()->metadata()['link'] ?? self::fail('Link metadata not set');
+        return $this->mailer()
+            ->sentEmails()
+            ->whereTo($email)
+            ->first()
+            ->metadata()['link'] ?? self::fail('Link metadata not set')
+        ;
     }
 }

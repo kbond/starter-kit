@@ -10,7 +10,7 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\DependencyInjection\Attribute\Target;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\RateLimiter\RateLimiterFactory;
+use Symfony\Component\RateLimiter\RateLimiterFactoryInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
 final class RegistrationController extends AbstractController
@@ -23,7 +23,7 @@ final class RegistrationController extends AbstractController
         Security $security,
 
         #[Target('userRegistrationLimiter')]
-        RateLimiterFactory $rateLimiter, // todo switch to RateLimiterInterface in 7.3
+        RateLimiterFactoryInterface $rateLimiter,
     ) {
         $user = new User();
         $form = $this->createForm(RegistrationForm::class, $user);
