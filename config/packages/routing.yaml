@@ -6,11 +6,3 @@ when@prod:
     framework:
         router:
             strict_requirements: null
-
-when@dev:
-    parameters:
-        env(SYMFONY_PROJECT_DEFAULT_ROUTE_URL): '%env(APP_URL)%'
-
-    framework:
-        router:
-            default_uri: '%env(SYMFONY_PROJECT_DEFAULT_ROUTE_URL)%'
