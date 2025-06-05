@@ -85,7 +85,7 @@ final class VerificationController extends AbstractController
         $this->addFlash('success', 'Your email has been verified successfully.');
         $request->getSession()->remove(self::SESSION_USER_ID);
 
-        return $security->login($user, 'form_login');
+        return $security->login($user);
     }
 
     /**

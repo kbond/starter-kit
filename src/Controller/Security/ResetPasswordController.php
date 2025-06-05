@@ -108,7 +108,7 @@ final class ResetPasswordController extends AbstractController
             $request->getSession()->remove(self::SESSION_USER_ID_KEY);
             $this->addFlash('success', 'Your password has been reset successfully, you are now logged in.');
 
-            return $security->login($user, 'form_login');
+            return $security->login($user);
         }
 
         return $this->render('security/reset_password.html.twig', [

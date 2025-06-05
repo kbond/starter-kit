@@ -31,7 +31,7 @@ final class ChangeEmailController extends AbstractController
             $em->flush();
 
             // since the user identifier changed, we need to re-authenticate
-            $security->login($user, 'form_login');
+            $security->login($user);
 
             $this->addFlash('success', 'You have successfully changed your email.');
 
