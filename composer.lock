@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0366ffce7dde78c41eaa247f618080b7",
+    "content-hash": "399512ef0cd76cd053f1f8547644f647",
     "packages": [
         {
             "name": "composer/semver",
@@ -6943,16 +6943,16 @@
         },
         {
             "name": "symfony/stimulus-bundle",
-            "version": "v2.25.2",
+            "version": "v2.26.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/stimulus-bundle.git",
-                "reference": "5a6aef0646119530da862d5afa1386ade3b9ed43"
+                "reference": "750c770f66b45b40135eb32d753dbd7d84182c92"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/stimulus-bundle/zipball/5a6aef0646119530da862d5afa1386ade3b9ed43",
-                "reference": "5a6aef0646119530da862d5afa1386ade3b9ed43",
+                "url": "https://api.github.com/repos/symfony/stimulus-bundle/zipball/750c770f66b45b40135eb32d753dbd7d84182c92",
+                "reference": "750c770f66b45b40135eb32d753dbd7d84182c92",
                 "shasum": ""
             },
             "require": {
@@ -6992,7 +6992,7 @@
                 "symfony-ux"
             ],
             "support": {
-                "source": "https://github.com/symfony/stimulus-bundle/tree/v2.25.2"
+                "source": "https://github.com/symfony/stimulus-bundle/tree/v2.26.0"
             },
             "funding": [
                 {
@@ -7008,7 +7008,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-05-19T11:54:27+00:00"
+            "time": "2025-05-23T09:27:30+00:00"
         },
         {
             "name": "symfony/stopwatch",
@@ -7609,16 +7609,16 @@
         },
         {
             "name": "symfony/ux-turbo",
-            "version": "v2.25.2",
+            "version": "v2.26.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ux-turbo.git",
-                "reference": "11ebca138005c7e25678c3f98a07ddf718a0480c"
+                "reference": "12d9989fb945f2074b41aad4915fc593ecd4ed00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ux-turbo/zipball/11ebca138005c7e25678c3f98a07ddf718a0480c",
-                "reference": "11ebca138005c7e25678c3f98a07ddf718a0480c",
+                "url": "https://api.github.com/repos/symfony/ux-turbo/zipball/12d9989fb945f2074b41aad4915fc593ecd4ed00",
+                "reference": "12d9989fb945f2074b41aad4915fc593ecd4ed00",
                 "shasum": ""
             },
             "require": {
@@ -7632,7 +7632,8 @@
                 "dbrekelmans/bdi": "dev-main",
                 "doctrine/doctrine-bundle": "^2.4.3",
                 "doctrine/orm": "^2.8 | 3.0",
-                "phpstan/phpstan": "^1.10",
+                "php-webdriver/webdriver": "^1.15",
+                "phpstan/phpstan": "^2.1.17",
                 "symfony/asset-mapper": "^6.4|^7.0",
                 "symfony/debug-bundle": "^5.4|^6.0|^7.0",
                 "symfony/expression-language": "^5.4|^6.0|^7.0",
@@ -7640,7 +7641,7 @@
                 "symfony/framework-bundle": "^6.4|^7.0",
                 "symfony/mercure-bundle": "^0.3.7",
                 "symfony/messenger": "^5.4|^6.0|^7.0",
-                "symfony/panther": "^2.1",
+                "symfony/panther": "^2.2",
                 "symfony/phpunit-bridge": "^5.4|^6.0|^7.0",
                 "symfony/process": "^5.4|6.3.*|^7.0",
                 "symfony/property-access": "^5.4|^6.0|^7.0",
@@ -7687,7 +7688,7 @@
                 "turbo-stream"
             ],
             "support": {
-                "source": "https://github.com/symfony/ux-turbo/tree/v2.25.2"
+                "source": "https://github.com/symfony/ux-turbo/tree/v2.26.0"
             },
             "funding": [
                 {
@@ -7703,7 +7704,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-05-19T11:54:27+00:00"
+            "time": "2025-05-26T20:34:50+00:00"
         },
         {
             "name": "symfony/validator",
@@ -8655,16 +8656,16 @@
         },
         {
             "name": "zenstruck/messenger-monitor-bundle",
-            "version": "v0.5.3",
+            "version": "v0.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zenstruck/messenger-monitor-bundle.git",
-                "reference": "c984f16231bc255c6e25726925e408dfda4e1974"
+                "reference": "d002de60926efcb0ea0d8d041f1e98dc9141f4bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zenstruck/messenger-monitor-bundle/zipball/c984f16231bc255c6e25726925e408dfda4e1974",
-                "reference": "c984f16231bc255c6e25726925e408dfda4e1974",
+                "url": "https://api.github.com/repos/zenstruck/messenger-monitor-bundle/zipball/d002de60926efcb0ea0d8d041f1e98dc9141f4bc",
+                "reference": "d002de60926efcb0ea0d8d041f1e98dc9141f4bc",
                 "shasum": ""
             },
             "require": {
@@ -8722,7 +8723,7 @@
             "homepage": "https://github.com/zenstruck/messenger-monitor-bundle",
             "support": {
                 "issues": "https://github.com/zenstruck/messenger-monitor-bundle/issues",
-                "source": "https://github.com/zenstruck/messenger-monitor-bundle/tree/v0.5.3"
+                "source": "https://github.com/zenstruck/messenger-monitor-bundle/tree/v0.5.4"
             },
             "funding": [
                 {
@@ -8730,7 +8731,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-05-22T14:50:37+00:00"
+            "time": "2025-05-29T21:02:18+00:00"
         }
     ],
     "packages-dev": [
@@ -8992,16 +8993,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v5.4.0",
+            "version": "v5.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "447a020a1f875a434d62f2a401f53b82a396e494"
+                "reference": "ae59794362fe85e051a58ad36b289443f57be7a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/447a020a1f875a434d62f2a401f53b82a396e494",
-                "reference": "447a020a1f875a434d62f2a401f53b82a396e494",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/ae59794362fe85e051a58ad36b289443f57be7a9",
+                "reference": "ae59794362fe85e051a58ad36b289443f57be7a9",
                 "shasum": ""
             },
             "require": {
@@ -9044,9 +9045,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v5.4.0"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v5.5.0"
             },
-            "time": "2024-12-30T11:07:19+00:00"
+            "time": "2025-05-31T08:24:38+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -11375,16 +11376,16 @@
         },
         {
             "name": "zenstruck/foundry",
-            "version": "v2.5.2",
+            "version": "v2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zenstruck/foundry.git",
-                "reference": "da07fe4bba8e1391ec41cdb29b1523a9f5bfd4cd"
+                "reference": "830d5a5243b5b81e79b2b91b67654836490ed833"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zenstruck/foundry/zipball/da07fe4bba8e1391ec41cdb29b1523a9f5bfd4cd",
-                "reference": "da07fe4bba8e1391ec41cdb29b1523a9f5bfd4cd",
+                "url": "https://api.github.com/repos/zenstruck/foundry/zipball/830d5a5243b5b81e79b2b91b67654836490ed833",
+                "reference": "830d5a5243b5b81e79b2b91b67654836490ed833",
                 "shasum": ""
             },
             "require": {
@@ -11473,7 +11474,7 @@
             ],
             "support": {
                 "issues": "https://github.com/zenstruck/foundry/issues",
-                "source": "https://github.com/zenstruck/foundry/tree/v2.5.2"
+                "source": "https://github.com/zenstruck/foundry/tree/v2.6.0"
             },
             "funding": [
                 {
@@ -11481,7 +11482,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-05-26T11:56:41+00:00"
+            "time": "2025-06-05T08:34:41+00:00"
         },
         {
             "name": "zenstruck/mailer-test",
@@ -11552,7 +11553,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
@@ -11560,6 +11561,6 @@
         "ext-ctype": "*",
         "ext-iconv": "*"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }
